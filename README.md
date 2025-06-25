@@ -1,10 +1,11 @@
 ﻿▶변경 사항◀
 
-1. <activity_main.xml>
-15, 16번째 줄
-android:layout_width="60dp"android:layout_height="60dp“
+1. activity_main.xml의 15~16번째 줄 아래 내용으로 변경
 
-190~197번째 줄 삭제
+android:layout_width="60dp"
+android:layout_height="60dp“
+
++) 190~197번째 줄 삭제
 
 
 2. res\drawable에서
