@@ -1,6 +1,6 @@
 ﻿<변경 사항>
  
-+) Tab4Activity & activity_tab4.xml는 그냥 모두 위 깃허브에 업로드된 코드로 복사 붙여넣기하면 돼요
++) Tab4Activity & activity_tab4.xml는 그냥 모두 위 깃허브에 업로드된 코드로 복사 붙여넣기 하시면 돼요
 
 1. activity_main.xml
 - 15~16번째 줄
