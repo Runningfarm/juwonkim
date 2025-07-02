@@ -145,10 +145,13 @@ tab5Button.setOnClickListener(v -> startActivity(new Intent(this,
 위에 해당하는 42번째 줄 삭제
 
 15. 메인화면에 캐릭터 에셋 적용
+
 -> 깃허브에 업로드된 app/src/main/res/drawable에서 basic_spritesheet.png 이미지 리소스 파일 추가
 
 16. 움직이는 애니메이션 추가
+
 -> 깃허브에 업로드된 새로운 SpriteView.java 파일 추가 (복사 붙여넣기 하시면 돼요)
 
 17. 인벤토리에 농장/울타리 아이템 추가
+
 -> 깃허브에 업로드된 app/src/main/res/drawable에서 tile000.png ~ tile031.png(총 32개) 이미지 리소스 파일 추가
