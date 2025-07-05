@@ -1,4 +1,4 @@
-﻿<변경 사항>
+﻿<~7/2 변경 사항>
  
 +) Tab4Activity & activity_tab4.xml는 그냥 모두 위 깃허브에 업로드된 코드로 복사 붙여넣기 하시면 돼요
 
@@ -155,3 +155,129 @@ tab5Button.setOnClickListener(v -> startActivity(new Intent(this,
 17. 인벤토리에 농장/울타리 아이템 추가
 
 -> 깃허브에 업로드된 app/src/main/res/drawable에서 tile000.png ~ tile031.png(총 32개) 이미지 리소스 파일 추가
+
+<7/5 변경사항>
+
+```
+activity_tab1.xml
+activity_tab2.xml
+activity_tab3.xml
+activity_tab4.xml
+activity_tab6.xml
+```
+
+위 해당하는 XML 파일들의 하단탭을 모두 아래로 수정
+
+```
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="#F5F5F5"
+        android:paddingTop="6dp"
+        android:elevation="8dp"
+        android:gravity="center"
+        android:weightSum="6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/tab1Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="@null"
+            android:contentDescription="탭 1" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/tab2Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_running"
+            android:background="@null"
+            android:contentDescription="탭 2" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/tab3Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:contentDescription="탭 3"
+            android:src="@drawable/ic_quest" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/tab4Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_inventory"
+            android:background="@null"
+            android:contentDescription="탭 4" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/tab6Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_mypage"
+            android:background="@null"
+            android:contentDescription="탭 6" />
+    </LinearLayout>
+```
+
+-> 위 내용은 각 ImageButton 태그 사이에 아래 코드를 삽입한 것
+
+```
+<Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+```
+
+2. SpriteView.java의 94번째 줄
+
+```
+private void drawFrame(Canvas canvas) {
+        canvas.drawColor(0xFFFFFAF0);  // 배경 색 맞추기
+
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastFrameTime > frameDuration) {
+            frameIndex = (frameIndex + 1) % frameCount;
+            lastFrameTime = currentTime;
+        }
+
+        srcRect.left = frameIndex * frameWidth;
+        srcRect.top = frameRow * frameHeight;
+        srcRect.right = srcRect.left + frameWidth;
+        srcRect.bottom = srcRect.top + frameHeight;
+
+        canvas.drawBitmap(spriteSheet, srcRect, dstRect, null);
+    }
+```
+
+위의 drawFrame 함수가 사용된 코드를 아래 내용으로 수정
+
+3. activity_main.xml의 캐릭터 메뉴를 설정하는 코드에서 73번째 줄의 visible -> gone으로 수정 (아래 참고)
+```
+android:visibility="gone"
+```
