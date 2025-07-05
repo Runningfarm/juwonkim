@@ -277,6 +277,38 @@ private void drawFrame(Canvas canvas) {
 
 위의 drawFrame 함수가 사용된 코드를 아래 내용으로 수정
 
+```
+private void drawFrame(Canvas canvas) {
+        canvas.drawColor(0xFFFFFAF0); // 배경
+
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastFrameTime > frameDuration) {
+            frameIndex = (frameIndex + 1) % frameCount;
+            lastFrameTime = currentTime;
+        }
+
+        srcRect.left = frameIndex * frameWidth;
+        srcRect.top = frameRow * frameHeight;
+        srcRect.right = srcRect.left + frameWidth;
+        srcRect.bottom = srcRect.top + frameHeight;
+
+        // 중앙 좌표 계산
+        int canvasWidth = canvas.getWidth();
+        int canvasHeight = canvas.getHeight();
+
+        int size = frameWidth * 4; // 출력할 크기
+        int left = (canvasWidth - size) / 2;
+        int top = (canvasHeight - size) / 2;
+
+        dstRect.left = left;
+        dstRect.top = top;
+        dstRect.right = left + size;
+        dstRect.bottom = top + size;
+
+        canvas.drawBitmap(spriteSheet, srcRect, dstRect, null);
+    }
+```
+
 3. activity_main.xml의 캐릭터 메뉴를 설정하는 코드에서 73번째 줄의 visible -> gone으로 수정 (아래 참고)
 ```
 android:visibility="gone"
