@@ -156,6 +156,8 @@ tab5Button.setOnClickListener(v -> startActivity(new Intent(this,
 
 -> 깃허브에 업로드된 app/src/main/res/drawable에서 tile000.png ~ tile031.png(총 32개) 이미지 리소스 파일 추가
 
+
+
 <7/5 변경사항>
 
 1. 하단 탭 간격 정리
