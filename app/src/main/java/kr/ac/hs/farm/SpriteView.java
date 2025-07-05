@@ -92,7 +92,7 @@ public class SpriteView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void drawFrame(Canvas canvas) {
-        canvas.drawColor(0xFFFFFAF0);  // 배경 색 맞추기
+        canvas.drawColor(0xFFFFFAF0); // 배경
 
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastFrameTime > frameDuration) {
@@ -104,6 +104,20 @@ public class SpriteView extends SurfaceView implements SurfaceHolder.Callback {
         srcRect.top = frameRow * frameHeight;
         srcRect.right = srcRect.left + frameWidth;
         srcRect.bottom = srcRect.top + frameHeight;
+
+        // 중앙 좌표 계산
+        int canvasWidth = canvas.getWidth();
+        int canvasHeight = canvas.getHeight();
+
+        int size = (int)(frameWidth * 2); // 크기를 2배로 축소 (필요시 1.5, 1.2 등 조정 가능)
+
+        int left = (canvasWidth - size) / 2;
+        int top = (canvasHeight - size) / 2;
+
+        dstRect.left = left;
+        dstRect.top = top;
+        dstRect.right = left + size;
+        dstRect.bottom = top + size;
 
         canvas.drawBitmap(spriteSheet, srcRect, dstRect, null);
     }

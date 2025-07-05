@@ -88,6 +88,11 @@
             android:src="@drawable/ic_home"
             android:background="@null"
             android:contentDescription="탭1" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
         <ImageButton
             android:id="@+id/tab2Button"
             android:layout_width="0dp"
@@ -96,6 +101,11 @@
             android:src="@drawable/ic_running"
             android:background="@null"
             android:contentDescription="탭2" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
         <ImageButton
             android:id="@+id/tab3Button"
             android:layout_width="0dp"
@@ -104,6 +114,11 @@
             android:src="@drawable/ic_quest"
             android:background="@null"
             android:contentDescription="탭3" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
         <ImageButton
             android:id="@+id/tab4Button"
             android:layout_width="0dp"
@@ -112,6 +127,11 @@
             android:src="@drawable/ic_inventory"
             android:background="@null"
             android:contentDescription="탭4" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
         <ImageButton
             android:id="@+id/tab6Button"
             android:layout_width="0dp"
