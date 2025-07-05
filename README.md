@@ -283,35 +283,35 @@ private void drawFrame(Canvas canvas) {
 
 ```
 private void drawFrame(Canvas canvas) {
-    canvas.drawColor(0xFFFFFAF0); // 배경
+        canvas.drawColor(0xFFFFFAF0); // 배경
 
-    long currentTime = System.currentTimeMillis();
-    if (currentTime - lastFrameTime > frameDuration) {
-        frameIndex = (frameIndex + 1) % frameCount;
-        lastFrameTime = currentTime;
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastFrameTime > frameDuration) {
+            frameIndex = (frameIndex + 1) % frameCount;
+            lastFrameTime = currentTime;
+        }
+
+        srcRect.left = frameIndex * frameWidth;
+        srcRect.top = frameRow * frameHeight;
+        srcRect.right = srcRect.left + frameWidth;
+        srcRect.bottom = srcRect.top + frameHeight;
+
+        // 중앙 좌표 계산
+        int canvasWidth = canvas.getWidth();
+        int canvasHeight = canvas.getHeight();
+
+        int size = (int)(frameWidth * 2); // 크기를 2배로 축소 (필요시 1.5, 1.2 등 조정 가능)
+
+        int left = (canvasWidth - size) / 2;
+        int top = (canvasHeight - size) / 2;
+
+        dstRect.left = left;
+        dstRect.top = top;
+        dstRect.right = left + size;
+        dstRect.bottom = top + size;
+
+        canvas.drawBitmap(spriteSheet, srcRect, dstRect, null);
     }
-
-    srcRect.left = frameIndex * frameWidth;
-    srcRect.top = frameRow * frameHeight;
-    srcRect.right = srcRect.left + frameWidth;
-    srcRect.bottom = srcRect.top + frameHeight;
-
-    // 중앙 좌표 계산
-    int canvasWidth = canvas.getWidth();
-    int canvasHeight = canvas.getHeight();
-
-    int size = (int)(frameWidth * 1.5); // 크기를 1.5배로 축소 (필요시 2, 1.2 등 조정 가능)
-
-    int left = (canvasWidth - size) / 2;
-    int top = (canvasHeight - size) / 2;
-
-    dstRect.left = left;
-    dstRect.top = top;
-    dstRect.right = left + size;
-    dstRect.bottom = top + size;
-
-    canvas.drawBitmap(spriteSheet, srcRect, dstRect, null);
-}
 ```
 
 3. 앱 실행 시 캐릭터 메뉴를 보이지 않도록 설정 (캐릭터 클릭 시에만 캐릭터 메뉴가 보이게 설정)
