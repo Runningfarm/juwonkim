@@ -158,15 +158,17 @@ tab5Button.setOnClickListener(v -> startActivity(new Intent(this,
 
 <7/5 변경사항>
 
+1. 하단 탭 간격 정리
+
 ```
-activity_tab1.xml
+activity_main.xml
 activity_tab2.xml
 activity_tab3.xml
 activity_tab4.xml
 activity_tab6.xml
 ```
 
-위 해당하는 XML 파일들의 하단탭을 모두 아래로 수정
+위 해당하는 XML 파일들의 하단 탭을 모두 아래로 수정
 
 ```
     <LinearLayout
@@ -254,7 +256,9 @@ activity_tab6.xml
             android:layout_height="wrap_content" />
 ```
 
-2. SpriteView.java의 94번째 줄
+2. 캐릭터 중앙 배치
+
+SpriteView.java의 94번째 줄
 
 ```
 private void drawFrame(Canvas canvas) {
@@ -309,7 +313,9 @@ private void drawFrame(Canvas canvas) {
     }
 ```
 
-3. activity_main.xml의 캐릭터 메뉴를 설정하는 코드에서 73번째 줄의 visible -> gone으로 수정 (아래 참고)
+3. 앱 실행 시 캐릭터 메뉴를 보이지 않도록 설정 (캐릭터 클릭 시에만 캐릭터 메뉴가 보이게 설정)
+
+activity_main.xml의 캐릭터 메뉴를 설정하는 코드에서 73번째 줄의 visible -> gone으로 수정 (아래 참고)
 ```
 android:visibility="gone"
 ```
