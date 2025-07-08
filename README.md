@@ -322,3 +322,80 @@ activity_main.xml의 캐릭터 메뉴를 설정하는 코드에서 73번째 줄�
 ```
 android:visibility="gone"
 ```
+
+<7/8 변경사항>
+1. 작물 및 가구 아이템 인벤토리에 추가
+
+```
+작물 아이템
+: blueberry, cabbage, circle, corn, flower, pea, potato, pumkin, purple, radish, red, rice1, rice2, sprout, starfruit, tulip
+```
+
+```
+가구 아이템
+: allcarpet, bed1, bed2, bed3, carpet1, carpet2, carpet3, frameimg1, frameimg2, frameimg3, nightstand
+```
+
+app/src/main/res/drawable에 각각의 이미지 파일 추가
+
+2. Tab4Activity.java 수정
+
+117번째 줄 loadItems 함수가 사용된 부분 아래 내용으로 수정 
+
+```
+private void loadItems(String category) {
+        itemList.clear();
+
+        if (category.equals("울타리")) {
+            for (int i = 0; i < 32; i++) {
+                String resName = String.format("tile%03d", i);
+                int resId = getResources().getIdentifier(resName, "drawable", getPackageName());
+                if (resId != 0) {
+                    itemList.add(new Item("울타리 " + (i + 1), "울타리", 0, resId, true));
+                }
+            }
+
+        } else if (category.equals("작물")) {
+            String[] cropNames = {
+                    "blueberry", "cabbage", "circle", "corn", "flower",
+                    "pea", "potato", "pumkin", "purple", "radish",
+                    "red", "rice1", "rice2", "sprout", "starfruit", "tulip"
+            };
+
+            for (int i = 0; i < cropNames.length; i++) {
+                String resName = cropNames[i];
+                int resId = getResources().getIdentifier(resName, "drawable", getPackageName());
+                if (resId != 0) {
+                    itemList.add(new Item("작물 " + (i + 1), "작물", 0, resId, true));
+                }
+            }
+
+        } else if (category.equals("가구")) {
+            String[] furnitureNames = {
+                    "allcarpet", "bed1", "bed2", "bed3",
+                    "carpet1", "carpet2", "carpet3",
+                    "frameimg1", "frameimg2", "frameimg3", "nightstand"
+            };
+
+            for (int i = 0; i < furnitureNames.length; i++) {
+                String resName = furnitureNames[i];
+                int resId = getResources().getIdentifier(resName, "drawable", getPackageName());
+                if (resId != 0) {
+                    itemList.add(new Item("가구 " + (i + 1), "가구", 0, resId, true));
+                }
+            }
+
+        } else if (category.equals("먹이")) {
+            int feedImageRes = R.drawable.feed_item;
+            int count = prefs.getInt(KEY_FOOD_COUNT, 3);
+            itemList.add(new Item("먹이 아이템", "먹이", count, feedImageRes, true));
+        }
+    }
+```
+
+
+맨 위 import 부분에 아래 내용 추가
+
+```
+import android.view.View;
+```
