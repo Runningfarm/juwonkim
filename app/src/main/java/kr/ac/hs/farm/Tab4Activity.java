@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -69,6 +70,10 @@ public class Tab4Activity extends AppCompatActivity {
 
         itemList = new ArrayList<>();
         loadItems("울타리");  // 기본으로 울타리
+
+        farmCategoryGroup.setVisibility(View.VISIBLE); // <-- 이 줄 추가!
+        chipFence.setChecked(true); // 울타리 chip 기본 선택 표시
+
         adapter = new ItemAdapter(itemList, this, item -> { });
         recyclerView.setAdapter(adapter);
 
@@ -120,28 +125,44 @@ public class Tab4Activity extends AppCompatActivity {
                     itemList.add(new Item("울타리 " + (i + 1), "울타리", 0, resId, true));
                 }
             }
+
         } else if (category.equals("작물")) {
-            for (int i = 0; i < 57; i++) {
-                String resName = String.format("crop%03d", i);
+            String[] cropNames = {
+                    "blueberry", "cabbage", "circle", "corn", "flower",
+                    "pea", "potato", "pumkin", "purple", "radish",
+                    "red", "rice1", "rice2", "sprout", "starfruit", "tulip"
+            };
+
+            for (int i = 0; i < cropNames.length; i++) {
+                String resName = cropNames[i];
                 int resId = getResources().getIdentifier(resName, "drawable", getPackageName());
                 if (resId != 0) {
                     itemList.add(new Item("작물 " + (i + 1), "작물", 0, resId, true));
                 }
             }
+
         } else if (category.equals("가구")) {
-            for (int i = 0; i < 31; i++) {
-                String resName = String.format("furniture%03d", i);
+            String[] furnitureNames = {
+                    "allcarpet", "bed1", "bed2", "bed3",
+                    "carpet1", "carpet2", "carpet3",
+                    "frameimg1", "frameimg2", "frameimg3", "nightstand"
+            };
+
+            for (int i = 0; i < furnitureNames.length; i++) {
+                String resName = furnitureNames[i];
                 int resId = getResources().getIdentifier(resName, "drawable", getPackageName());
                 if (resId != 0) {
                     itemList.add(new Item("가구 " + (i + 1), "가구", 0, resId, true));
                 }
             }
+
         } else if (category.equals("먹이")) {
             int feedImageRes = R.drawable.feed_item;
             int count = prefs.getInt(KEY_FOOD_COUNT, 3);
             itemList.add(new Item("먹이 아이템", "먹이", count, feedImageRes, true));
         }
     }
+
 
     @Override
     protected void onResume() {
